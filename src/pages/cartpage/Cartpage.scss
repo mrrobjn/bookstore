@@ -1,0 +1,165 @@
+.cart-items {
+  padding: 0 10%;
+  background-color: #e9f2fa;
+  .cart-container {
+    display: flex;
+    justify-content: space-between;
+    .cart-detail {
+      width: 70%;
+      height: 70vh;
+      overflow: scroll;
+      .no-items {
+        background-color: #fff;
+        box-shadow: rgb(3 0 71 /9%) 0 1px 3px;
+        margin: 10px 0;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 20px;
+        color: #ea5867;
+        padding: 10px 0;
+      }
+      .cart-product {
+        border-radius: 10px;
+        background-color: #fff;
+        display: flex;
+        box-shadow: rgb(3 0 71 /9%) 0 1px 3px;
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0;
+        .img {
+          width: 20%;
+          height: 100px;
+          img {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            object-fit: contain;
+          }
+        }
+        .cart-details {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          h3 {
+            font-size: 20px;
+            font-weight: normal;
+          }
+          p {
+            font-size: 15px;
+            display: flex;
+            margin-bottom: 10px;
+            color: #808080;
+            span {
+              color: #ea5867;
+              font-weight: bold;
+              margin-left: 10px;
+            }
+          }
+        }
+        .cart-items-function {
+          width: 20%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: right;
+          position: relative;
+          .item-remove {
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+          .increase {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .cart-total {
+      width: 30%;
+      padding: 10px 0;
+      padding-left: 10px;
+      .payment {
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: rgb(3 0 71 /9%) 0 1px 3px;
+        border-radius: 10px;
+        .total-box {
+          display: flex;
+          justify-content: space-between;
+          font-size: 16px;
+          p {
+          }
+          span {
+            color: #ea5867;
+            font-weight: bold;
+          }
+        }
+        .payment-box {
+          margin-top: 10px;
+          .payment-method {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            .payment-input {              
+              text-align: center;
+              background-color: #fff;
+              color: #ea5867;
+              width: 30%;
+              padding: 5px;
+              border-radius: 5px;
+              border: 2px solid #ea5867;
+              position: relative;
+              transition: 0.3s;
+              input{
+                position: absolute;
+                top: 5px;
+                right: 5px;
+              }
+              &:hover{
+                background-color: #ea5867;
+                color: #fff;
+                cursor: pointer;
+              }
+              p {
+                padding-top: 5px;
+              }
+            }
+          }
+          .qr-img{
+            width: 100%;
+            img{
+              width: 100%;
+            }
+          }
+          .input-holder {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            input {
+              border: 1px solid #ea5867;
+              outline: none;
+              padding: 10px;
+              border-radius: 5px;
+            }
+           
+          }
+          .address-holder{
+            textarea{
+              border: 1px solid #ea5867;
+              outline: none;
+              padding: 10px;
+              border-radius: 5px;
+            }
+          }
+          button {
+            margin-top: 20px;
+            background-color: #ea5867;
+            color: #fff;
+            width: 100%;
+            height: 38px;
+          }
+        }
+      }
+    }
+  }
+}

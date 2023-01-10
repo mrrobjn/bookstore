@@ -1,0 +1,23 @@
+.user-profile-container {
+  width: 80%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  .info-container {
+    margin-top: 10px;
+    margin-left: 10%;
+    display: flex;
+    .info-label {
+      p {
+        margin: 20px 0;
+        font-weight: bold;
+      }
+    }
+    .user-info {
+      p {
+        margin: 20px 0;
+        margin-left: 20px;
+      }
+    }
+  }
+}

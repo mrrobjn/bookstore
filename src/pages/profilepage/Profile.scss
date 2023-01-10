@@ -1,0 +1,27 @@
+.profile-section {
+  background-color: #e9f2fa;
+  .profile-container {
+    margin: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    .profile-menu-container {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      background-color: #fff;
+      width: 19%;
+      border-radius: 10px;
+      height: 70vh;
+      .menu-btn-container {
+        padding: 10px;
+        .menu-btn {
+          padding: 20px 10px;
+          transition: 0.3s;
+          font-weight: bold;
+          font-size: 18px;
+          &:hover {
+            color: #ea5867;
+          }
+        }
+      }
+    }
+  }
+}

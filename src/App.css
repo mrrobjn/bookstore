@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+#header {
+  width: 100vw;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+}
+button {
+  background: none;
+  color: #ea5867;
+  font-size: 16px;
+  border: 1px solid rgb(3 0 71 /9%);
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #ea5867;
+  color: #fff;
+}

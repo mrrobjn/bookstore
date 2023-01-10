@@ -1,0 +1,116 @@
+.flash-background {
+  background-color: #e9f2fa;
+  padding: 10px 0;
+  margin-top: 20px;
+  .flash-container {
+    padding: 0 10%;
+    .flash-heading {
+      display: flex;
+      padding: 10px 0;
+      i {
+        color: #ea5867;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.product-box {
+  outline-style: none;
+  .product {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: rgb(3 0 71 /9%) 0 1px 3px;
+    padding: 20px;
+    position: relative;
+    margin: 10px;
+    .product-img {
+      .discount{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #ea5867;
+        color: #fff;
+        border-radius: 50px;
+        font-size: 12px;
+        padding: 3px 10px;
+      }
+      img {
+        width: 100%;
+      }
+      .product-like {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+        opacity: 0;
+        transition: 0.5s;
+        label {
+          background-color: #0f3460;
+          padding: 1px 10px;
+          font-size: 12px;
+          color: #fff;
+          border-radius: 50px;
+        }
+        i {
+          font-size: 20px;
+          margin: 10px 3px;
+        }
+      }
+      &:hover .product-like {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+    .product-detail {
+      .product-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        font-size: 16px;
+      }
+      .rate {
+        font-size: 15px;
+        color: orangered;
+        margin: 5px 5px 5px 0;
+      }
+      .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #ea5867;
+        
+      }
+    }
+  }
+}
+.control-btn .next,
+.control-btn .prev {
+  position: absolute;
+  top: 40%;
+  width: 50px;
+  height: 50px;
+  background-color: #0f3460;
+  border-radius: 50px;
+  transition: 0.5s;
+  z-index: 5;
+  border: none;
+  outline-style: none;
+  i {
+    font-size: 20px;
+    color: #fff;
+    transition: 0.5s;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #ea5867;
+  }
+}
+.control-btn .next {
+  right: -20px;
+}
+.control-btn .prev {
+  left: -20px;
+}

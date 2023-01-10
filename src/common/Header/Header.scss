@@ -1,0 +1,139 @@
+#header {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #fff;
+}
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #e9f2fa;
+  border-radius: 50%;
+}
+// head
+.head {
+  display: flex;
+  justify-content: space-between;
+  background-color: #0f3460;
+  padding: 10px 10%;
+}
+.left-head a {
+  margin-right: 20px;
+}
+.right-head a {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.head a {
+  color: #fff;
+  font-size: 14px;
+}
+.head a i {
+  margin-right: 10px;
+}
+/* head  */
+/* search  */
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  .logo {
+    a {
+      color: #ea5867;
+      font-weight: bolder;
+      font-size: 30px;
+    }
+  }
+  .search-bar {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    color: #333;
+    i {
+      width: 10%;
+      height: 100%;
+      border-right: 2px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    input {
+      padding: 10px;
+      width: 75%;
+      border-style: none;
+      font-size: 16px;
+      outline-style: none;
+    }
+    span {
+      width: 20%;
+      line-height: 100%;
+      cursor: pointer;
+      border-left: 2px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  .icon {
+    display: flex;
+    position: relative;
+    .user-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  }
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    position: relative;
+    span {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      background-color: #ea5867;
+      font-size: 12px;
+      color: #fff;
+      line-height: 20px;
+    }
+  }
+}
+
+/* search  */
+/* navbar  */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10%;
+  .categories {
+    background-color: #e9f2fa;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  .nav-link {
+    ul {
+      display: flex;
+      .nav-btn {
+        position: relative;
+        margin-left: 30px;
+        a {
+          transition: 0.3s;
+          &:hover {
+            color: #ea5867;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

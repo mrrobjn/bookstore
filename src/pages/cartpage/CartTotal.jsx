@@ -1,0 +1,193 @@
+import React, { useEffect, useState } from "react";
+
+const CartTotal = ({ cartItem, setCartItem }) => {
+  const isLogin = localStorage.getItem("isLogin");
+  const userId = localStorage.getItem("logUser");
+  const [paymentMethod, setPaymentMethod] = useState("vnpay");
+  const [cardOwner, setCardOwner] = useState(null);
+  const [cardNumber, setCardNumber] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [status, setStatus] = useState(false);
+  var arrayProducts = [];
+  cartItem.map((product) => {
+    let prd = {
+      id: product.id,
+      price: +product.price,
+      image: product.image,
+      qty: product.qty,
+    };
+    arrayProducts.push(prd);
+  });
+
+  const totalPrice = cartItem.reduce(
+    (price, item) => price + item.price * item.qty,
+    0
+  );
+  let orders = {
+    userId,
+    paymentMethod,
+    cardOwner,
+    cardNumber,
+    address,
+    totalPrice,
+    status,
+  };
+  let orderDetails = {
+    arrayProducts,
+  };
+  const URLOrder = "http://localhost:3000/orders";
+  const URLOrderDetails = "http://localhost:3000/orderDetails";
+  function checkout() {
+    if (cartItem.length === 0) {
+      alert("Giỏ hàng trống");
+    } else if (isLogin !== "true") {
+      alert("Vui lòng đăng nhập");
+    } else {
+      fetch(URLOrder, {
+        method: "POST",
+        body: JSON.stringify(orders),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          orderDetails.order_id = data.id;
+          fetch(URLOrderDetails, {
+            method: "POST",
+            body: JSON.stringify(orderDetails),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log(data);
+              alert("Đặt hàng thành công");
+              setCartItem([]);
+              setCardOwner("");
+              setCardNumber("");
+              setAddress("");
+            });
+        });
+    }
+  }
+  // async function createOrder(url = "", data = {}) {
+  //   const res = await fetch(url, {
+  //     method: "POST",
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       mode: "no-cors",
+  //     },
+  //   });
+  //   return res.json();
+  // }
+  // async function checkout() {
+  //   if (cartItem.length === 0) {
+  //     alert("Giỏ hàng trống");
+  //   } else if (isLogin !== "true") {
+  //     alert("Vui lòng đăng nhập");
+  //   } else {
+  //     let resultOrders;
+  //     let resultDetails;
+  //     await createOrder(URLOrderDetails, orderDetails).then((data) => {
+  //       resultDetails = data;
+  //     });
+  //     await createOrder(URLOrder, orders).then((data) => {
+  //       resultOrders = data;
+  //     });
+  //     alert("Đặt hàng thành công");
+  //   }
+  // }
+  return (
+    <>
+      <div className="cart-total">
+        <div className="payment">
+          <div className="total-box">
+            <p>Tổng thanh toán: </p>
+            <span>{totalPrice} đ</span>
+          </div>
+          <div className="payment-box">
+            <p>Chọn phương thức thanh toán:</p>
+            <div className="payment-method">
+              <label className="payment-input">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="vnpay"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  defaultChecked="checked"
+                />
+                <i className="fa-solid fa-qrcode"></i>
+                <p>VNPAY</p>
+              </label>
+              <label className="payment-input">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="credit-card"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                <i className="fa-solid fa-credit-card"></i>
+                <p>Thẻ tín dụng</p>
+              </label>
+              <label className="payment-input">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="cash"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                <i className="fa-solid fa-wallet"></i>
+                <p>Tiền mặt</p>
+              </label>
+            </div>
+            {paymentMethod == "credit-card" ? (
+              <>
+                <div className="input-holder">
+                  <label>Tên chủ thẻ</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setCardOwner(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="input-holder">
+                  <label>Số thẻ</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setCardNumber(e.target.value)}
+                    required
+                  />
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+            {paymentMethod == "vnpay" ? (
+              <div className="qr-img">
+                <img src="assets/images/qr.jpg" alt="" />
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="input-holder address-holder">
+              <label>Địa chỉ nhận hàng</label>
+              <textarea
+                type="text"
+                rows="3"
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+            <button onClick={() => checkout()}>Thanh toán </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default CartTotal;
