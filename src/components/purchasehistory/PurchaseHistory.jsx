@@ -6,7 +6,6 @@ const PurchaseHistory = () => {
       <div className="order-history-section">
         <div className="order-container">
           <div className="order">
-            <p>1</p>
             <p>Tổng tiền: 20000đ</p>
             
           </div>
