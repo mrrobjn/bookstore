@@ -7,7 +7,6 @@ const PurchaseHistory = () => {
         <div className="order-container">
           <div className="order">
             <p>Tổng tiền: 20000đ</p>
-            
           </div>
         </div>
       </div>
