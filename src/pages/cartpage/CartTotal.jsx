@@ -4,8 +4,8 @@ const CartTotal = ({ cartItem, setCartItem }) => {
   const isLogin = localStorage.getItem("isLogin");
   const userId = localStorage.getItem("logUser");
   const [paymentMethod, setPaymentMethod] = useState("vnpay");
-  const [cardOwner, setCardOwner] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
+  const [cardOwner, setCardOwner] = useState("null");
+  const [cardNumber, setCardNumber] = useState("null");
   const [address, setAddress] = useState("");
   const status = false;
   const current = new Date();
@@ -48,8 +48,6 @@ const CartTotal = ({ cartItem, setCartItem }) => {
     status,
     date,
     time,
-  };
-  let orderDetails = {
     arrayProducts,
   };
   const URLOrder = "http://localhost:3000/orders";
@@ -68,24 +66,13 @@ const CartTotal = ({ cartItem, setCartItem }) => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          orderDetails.order_id = data.id;
-          fetch(URLOrderDetails, {
-            method: "POST",
-            body: JSON.stringify(orderDetails),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => res.json())
-            .then(() => {
-              alert("Đặt hàng thành công");
-            });
+        .then(() => {
+          alert("Đặt hàng thành công");
         });
-        // setCartItem([]);
-        // setCardOwner("");
-        // setCardNumber("");
-        // setAddress("");
+      setCartItem([]);
+      // setCardOwner("");
+      // setCardNumber("");
+      // setAddress("");
     }
   }
 

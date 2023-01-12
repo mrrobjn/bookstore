@@ -8,7 +8,7 @@
     height: auto;
     border-radius: 10px;
     .product-list {
-      height: 300px;
+      max-height: 300px;
       overflow: scroll;
       .order-product {
         margin-bottom: 10px;

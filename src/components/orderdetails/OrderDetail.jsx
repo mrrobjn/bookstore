@@ -6,20 +6,8 @@ import ProfileMenu from "../profilemenu/ProfileMenu";
 import "./OrderDetail.scss";
 
 const OrderDetail = ({ orders }) => {
-  const [orderDetails, setOrderDetails] = useState([]);
-  const orderDetailUrl = "http://localhost:3000/orderDetails";
-  useEffect(() => {
-    axios
-      .get(orderDetailUrl)
-      .then((res) => {
-        setOrderDetails(res.data);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
-  }, []);
+  
   const { orderId } = useParams();
-  const orderDetail = orderDetails.find((order) => order.id == orderId);
   const orderInfo = orders.find((order) => order.id == orderId);
   return (
     <>
@@ -27,8 +15,8 @@ const OrderDetail = ({ orders }) => {
         <ProfileMenu />
         <div className="order-detail-container">
           <div className="product-list">
-            {orderDetail &&
-              orderDetail.arrayProducts.map((product) => {
+            {orderInfo &&
+              orderInfo.arrayProducts.map((product) => {
                 return (
                   <Link
                     to={`/product/${product.id}`}
@@ -70,7 +58,7 @@ const OrderDetail = ({ orders }) => {
                   <p>{orderInfo.date}</p>
                   <p>{orderInfo.time}</p>
                   <p style={{ color: "#ea5867" }}>{orderInfo.totalPrice} đ</p>
-                  <p className={orderInfo.status == false ? "red" : "green"}>
+                  <p className={orderInfo.status === false ? "red" : "green"}>
                     {orderInfo.status === false
                       ? "Chưa xác nhận"
                       : "Đã xác nhận"}
