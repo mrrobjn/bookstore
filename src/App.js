@@ -15,11 +15,13 @@ import SingleProduct from './pages/SingleProduct/SingleProduct';
 import LoginPage from './pages/loginpage/LoginPage';
 import PurchaseHistory from './components/purchasehistory/PurchaseHistory'
 import UserProfile from './components/userprofile/UserProfile';
+import OrderDetail from './components/orderdetails/OrderDetail.jsx'
 function App() {
   const [users, setUsers] = useState()
   const [products, setProducts] = useState([])
   const [slides, setSlides] = useState([])
   const [categories, setCategories] = useState([])
+  const [orders, setOrders] = useState([]);
   //fetch api
   useEffect(() => {
     axios.get('http://localhost:3000/products')
@@ -57,11 +59,19 @@ function App() {
         console.log(Error)
       })
   }, [])
-
+  const orderURL = "http://localhost:3000/orders";
+  useEffect(() => {
+    axios
+      .get(orderURL)
+      .then((res) => {
+        setOrders(res.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
   const [cartItem, setCartItem] = useState([])
   const [productFilter, setProductFilter] = useState(products)
-
-
   // add item to cart
   const addToCart = (product) => {
     const productExit = cartItem.find((item) => item.id === product.id)
@@ -123,15 +133,17 @@ function App() {
           descreaseQty={descreaseQty}
           deteteCart={deleteCart}
           cartItem={cartItem}
-          setCartItem={setCartItem} />}
+          setCartItem={setCartItem} 
+          />}
         />
         <Route path='profile' element={<Profile users={users} />} >
-          <Route path="userprofile" element={<UserProfile users={users}/>} />
+          <Route path="userprofile" element={<UserProfile users={users} />} />
           <Route
             path="purchasehistory"
-            element={<PurchaseHistory />}
+            element={<PurchaseHistory orders={orders} />}
           />
         </Route>
+        <Route path='/purchasehistory/:orderId' element={<OrderDetail orders={orders} />} />
         <Route path='product' element={<Product
           categories={categories}
           addToCart={addToCart}

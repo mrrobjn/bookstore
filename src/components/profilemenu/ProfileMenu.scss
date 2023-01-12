@@ -1,0 +1,19 @@
+.profile-menu-container {
+    box-shadow: rgb(3 0 71 / 9%) 0 1px 3px;
+    background-color: #fff;
+    width: 19%;
+    border-radius: 10px;
+    height: 400px;
+    .menu-btn-container {
+      padding: 10px;
+      .menu-btn {
+        padding: 20px 10px;
+        transition: 0.3s;
+        font-weight: bold;
+        font-size: 18px;
+        &:hover {
+          color: #ea5867;
+        }
+      }
+    }
+  }

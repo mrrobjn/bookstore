@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./Profile.scss";
-import ProfileMenu from "./ProfileMenu";
+import ProfileMenu from "../../components/profilemenu/ProfileMenu";
 const Profile = () => {
  
   return (

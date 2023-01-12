@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cartpage.scss";
 import CartTotal from "./CartTotal";
-const Cartpage = ({ cartItem, addToCart, descreaseQty, deteteCart,setCartItem }) => {
+const Cartpage = ({ cartItem, addToCart, descreaseQty, deteteCart,setCartItem,showDate }) => {
   
   return (
     <>
@@ -53,7 +53,7 @@ const Cartpage = ({ cartItem, addToCart, descreaseQty, deteteCart,setCartItem })
               );
             })}
           </div>
-          <CartTotal cartItem={cartItem} setCartItem={setCartItem}/>
+          <CartTotal cartItem={cartItem} setCartItem={setCartItem} showDate={showDate}/>
         </div>
       </section>
     </>

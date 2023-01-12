@@ -14,24 +14,23 @@ const SingleProduct = ({ products, addToCartQty }) => {
   };
   const { productId } = useParams();
   const product = products.find((product) => product.id == productId);
-  const { title, image, author,price, type } = product;
   return (
     <>
       <section className="single-product-section" style={{ paddingTop: 200 }}>
-        <div className="single-product-container">
+        {product&& <div className="single-product-container">
           <div className="single-product-left">
             <div className="img">
-              <img src={image} />
+              <img src={product.image} />
             </div>
           </div>
           <div className="single-product-right">
-            <h3>{title}</h3>
+            <h3>{product.title}</h3>
             <div className="detail-box">
               <p>
-                Tác giả: <span>{author}</span>
+                Tác giả: <span>{product.author}</span>
               </p>
               <p>
-                Loại sách: <span>{type}</span>
+                Loại sách: <span>{product.type}</span>
               </p>
               <div className="rate">
                 <i className="fa-solid fa-star"></i>
@@ -40,7 +39,7 @@ const SingleProduct = ({ products, addToCartQty }) => {
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i> (2 đánh giá)
               </div>
-              <h5 className="price">{price} đ</h5>
+              <h5 className="price">{product.price} đ</h5>
             </div>
             <div className="quantity-box">
               <button
@@ -64,7 +63,7 @@ const SingleProduct = ({ products, addToCartQty }) => {
               <i className="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng
             </button>
           </div>
-        </div>
+        </div>}
       </section>
     </>
   );

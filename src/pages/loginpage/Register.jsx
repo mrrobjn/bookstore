@@ -26,6 +26,11 @@ const Register = ({ users }) => {
       });
       result = await result.json();
       alert("Đăng kí thành công");
+      // setUseName("");
+      // setEmail("");
+      // setPhoneNo("");
+      // setPassword("");
+      // setConfirmPassword("");
     }
   }
   return (

@@ -1,13 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const CartTotal = ({ cartItem, setCartItem }) => {
   const isLogin = localStorage.getItem("isLogin");
   const userId = localStorage.getItem("logUser");
   const [paymentMethod, setPaymentMethod] = useState("vnpay");
-  const [cardOwner, setCardOwner] = useState(null);
-  const [cardNumber, setCardNumber] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [status, setStatus] = useState(false);
+  const [cardOwner, setCardOwner] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const status = false;
+  const current = new Date();
+  //date
+  const date = `${current.getDate()}-${
+    current.getMonth() + 1
+  }-${current.getFullYear()}`;
+  //time
+  const time =
+    current.getHours() +
+    ":" +
+    current.getMinutes() +
+    ":" +
+    current.getSeconds();
+
   var arrayProducts = [];
   cartItem.map((product) => {
     let prd = {
@@ -15,8 +28,10 @@ const CartTotal = ({ cartItem, setCartItem }) => {
       price: +product.price,
       image: product.image,
       qty: product.qty,
+      title: product.title,
     };
     arrayProducts.push(prd);
+    return 0;
   });
 
   const totalPrice = cartItem.reduce(
@@ -31,6 +46,8 @@ const CartTotal = ({ cartItem, setCartItem }) => {
     address,
     totalPrice,
     status,
+    date,
+    time,
   };
   let orderDetails = {
     arrayProducts,
@@ -61,46 +78,17 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             },
           })
             .then((res) => res.json())
-            .then((data) => {
-              // console.log(data);
+            .then(() => {
               alert("Đặt hàng thành công");
-              setCartItem([]);
-              setCardOwner("");
-              setCardNumber("");
-              setAddress("");
             });
         });
+        // setCartItem([]);
+        // setCardOwner("");
+        // setCardNumber("");
+        // setAddress("");
     }
   }
-  // async function createOrder(url = "", data = {}) {
-  //   const res = await fetch(url, {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //       mode: "no-cors",
-  //     },
-  //   });
-  //   return res.json();
-  // }
-  // async function checkout() {
-  //   if (cartItem.length === 0) {
-  //     alert("Giỏ hàng trống");
-  //   } else if (isLogin !== "true") {
-  //     alert("Vui lòng đăng nhập");
-  //   } else {
-  //     let resultOrders;
-  //     let resultDetails;
-  //     await createOrder(URLOrderDetails, orderDetails).then((data) => {
-  //       resultDetails = data;
-  //     });
-  //     await createOrder(URLOrder, orders).then((data) => {
-  //       resultOrders = data;
-  //     });
-  //     alert("Đặt hàng thành công");
-  //   }
-  // }
+
   return (
     <>
       <div className="cart-total">
@@ -109,7 +97,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             <p>Tổng thanh toán: </p>
             <span>{totalPrice} đ</span>
           </div>
-          <div className="payment-box">
+          <form className="payment-box" onSubmit={()=>checkout()}>
             <p>Chọn phương thức thanh toán:</p>
             <div className="payment-method">
               <label className="payment-input">
@@ -127,7 +115,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
                 <input
                   type="radio"
                   name="payment-method"
-                  value="credit-card"
+                  value="Thẻ tín dụng"
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 />
                 <i className="fa-solid fa-credit-card"></i>
@@ -137,14 +125,14 @@ const CartTotal = ({ cartItem, setCartItem }) => {
                 <input
                   type="radio"
                   name="payment-method"
-                  value="cash"
+                  value="Tiền mặt"
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 />
                 <i className="fa-solid fa-wallet"></i>
                 <p>Tiền mặt</p>
               </label>
             </div>
-            {paymentMethod == "credit-card" ? (
+            {paymentMethod === "Thẻ tín dụng" ? (
               <>
                 <div className="input-holder">
                   <label>Tên chủ thẻ</label>
@@ -166,7 +154,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             ) : (
               ""
             )}
-            {paymentMethod == "vnpay" ? (
+            {paymentMethod === "vnpay" ? (
               <div className="qr-img">
                 <img src="assets/images/qr.jpg" alt="" />
               </div>
@@ -182,8 +170,8 @@ const CartTotal = ({ cartItem, setCartItem }) => {
                 required
               />
             </div>
-            <button onClick={() => checkout()}>Thanh toán </button>
-          </div>
+            <button >Thanh toán </button>
+          </form>
         </div>
       </div>
     </>
