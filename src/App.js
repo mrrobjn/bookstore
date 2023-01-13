@@ -101,7 +101,7 @@ function App() {
   // filter product by type
   const filterResult = (item) => {
     const result = products.filter((product) => {
-      return product.type == item
+      return product.category_id == item
     })
     setProductFilter(result)
   }
@@ -143,7 +143,7 @@ function App() {
             element={<PurchaseHistory orders={orders} />}
           />
         </Route>
-        <Route path='/purchasehistory/:orderId' element={<OrderDetail orders={orders} />} />
+        <Route path='/purchasehistory/:orderId' element={<OrderDetail orders={orders} products={products}/>} />
         <Route path='product' element={<Product
           categories={categories}
           addToCart={addToCart}

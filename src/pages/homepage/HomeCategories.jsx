@@ -21,7 +21,7 @@ const HomeCategories = ({
             <Link to="./product" key={index}>
               <div
                 className="box"
-                onClick={() => filterResult(`${category.title}`)}
+                onClick={() => filterResult(`${category.id}`)}
               >
                 <span>{category.title}</span>
               </div>

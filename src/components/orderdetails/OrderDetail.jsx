@@ -1,48 +1,61 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import ProfileMenu from "../profilemenu/ProfileMenu";
 import "./OrderDetail.scss";
 
-const OrderDetail = ({ orders }) => {
-  
+const OrderDetail = ({ orders, products }) => {
   const { orderId } = useParams();
   const orderInfo = orders.find((order) => order.id == orderId);
+
+  const arrProducts =
+    orderInfo && orderInfo.arrayProducts.map((products) => products);
+
+  const productId =
+    arrProducts && arrProducts.map((product) => product.product_id);
+
+  const productDetail =
+    productId &&
+    products.filter((product) => {
+      return productId.find((id) => {
+        return product.id === id;
+      });
+    });
   return (
     <>
       <section className="order-detail-section" style={{ paddingTop: 200 }}>
         <ProfileMenu />
         <div className="order-detail-container">
           <div className="product-list">
-            {orderInfo &&
-              orderInfo.arrayProducts.map((product) => {
-                return (
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="order-product"
-                    key={product.id}
-                  >
-                    <div className="product-img">
-                      <img src={product.image} />
-                    </div>
-                    <div className="product-detail">
-                      <h3>{product.title}</h3>
-                      <div className="detail-container">
-                        <div className="left-detail">
-                          <p>Số lượng:</p>
-                          <p>Giá:</p>
-                          <p>Tổng:</p>
-                        </div>
-                        <div className="right-detail">
-                          <p>{product.qty}</p>
-                          <p>{product.price} đ</p>
-                          <p>{product.price * product.qty} đ</p>
+            {productDetail &&
+              productDetail.map((product) => {
+                arrProducts.map((productDetail) => {
+                  return (
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="order-product"
+                      key={product.id}
+                    >
+                      <div className="product-img">
+                        <img src={product.image} />
+                      </div>
+                      <div className="product-detail">
+                        <h3>{product.title}</h3>
+                        <div className="detail-container">
+                          <div className="left-detail">
+                            <p>Số lượng:</p>
+                            <p>Giá:</p>
+                            <p>Tổng:</p>
+                          </div>
+                          <div className="right-detail">
+                            <p>{productDetail.qty}</p>
+                            <p>{product.price} đ</p>
+                            <p>{product.price * productDetail.qty} đ</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                );
+                    </Link>
+                  );
+                });
               })}
           </div>
           {orderInfo && (

@@ -11,7 +11,7 @@ const Categories = ({ categories, filterResult, setProductFilter,products }) => 
             <div
               key={index}
               className="box"
-              onClick={() => filterResult(`${category.title}`)}
+              onClick={() => filterResult(`${category.id}`)}
             >
               <span>{category.title}</span>
             </div>

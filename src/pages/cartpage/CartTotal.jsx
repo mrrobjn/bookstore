@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const CartTotal = ({ cartItem, setCartItem }) => {
   const isLogin = localStorage.getItem("isLogin");
   const userId = localStorage.getItem("logUser");
-  const [paymentMethod, setPaymentMethod] = useState("vnpay");
+  const [paymentMethod, setPaymentMethod] = useState("VNPAY");
   const [cardOwner, setCardOwner] = useState("null");
   const [cardNumber, setCardNumber] = useState("null");
   const [address, setAddress] = useState("");
@@ -25,10 +25,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
   cartItem.map((product) => {
     let prd = {
       id: product.id,
-      price: +product.price,
-      image: product.image,
       qty: product.qty,
-      title: product.title,
     };
     arrayProducts.push(prd);
     return 0;
@@ -51,8 +48,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
     arrayProducts,
   };
   const URLOrder = "http://localhost:3000/orders";
-  const URLOrderDetails = "http://localhost:3000/orderDetails";
-  function checkout() {
+  function checkout(e) {
     if (cartItem.length === 0) {
       alert("Giỏ hàng trống");
     } else if (isLogin !== "true") {
@@ -69,10 +65,11 @@ const CartTotal = ({ cartItem, setCartItem }) => {
         .then(() => {
           alert("Đặt hàng thành công");
         });
-      setCartItem([]);
+      // setCartItem([]);
       // setCardOwner("");
       // setCardNumber("");
       // setAddress("");
+      return false
     }
   }
 
@@ -84,14 +81,14 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             <p>Tổng thanh toán: </p>
             <span>{totalPrice} đ</span>
           </div>
-          <form className="payment-box" onSubmit={()=>checkout()}>
+          <form className="payment-box" onSubmit={() => checkout()}>
             <p>Chọn phương thức thanh toán:</p>
             <div className="payment-method">
               <label className="payment-input">
                 <input
                   type="radio"
                   name="payment-method"
-                  value="vnpay"
+                  value="VNPAY"
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   defaultChecked="checked"
                 />
@@ -141,7 +138,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             ) : (
               ""
             )}
-            {paymentMethod === "vnpay" ? (
+            {paymentMethod === "VNPAY" ? (
               <div className="qr-img">
                 <img src="assets/images/qr.jpg" alt="" />
               </div>
@@ -157,7 +154,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
                 required
               />
             </div>
-            <button >Thanh toán </button>
+            <button type="submit">Thanh toán </button>
           </form>
         </div>
       </div>

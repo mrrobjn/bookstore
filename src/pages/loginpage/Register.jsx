@@ -7,7 +7,7 @@ const Register = ({ users }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  async function signUp() {
+  async function signUp(event) {
     const emailDumplicate = users.find((user) => email === user.email);
     let item = { useName, email, phongNo, password };
     if (emailDumplicate) {
@@ -26,17 +26,12 @@ const Register = ({ users }) => {
       });
       result = await result.json();
       alert("Đăng kí thành công");
-      // setUseName("");
-      // setEmail("");
-      // setPhoneNo("");
-      // setPassword("");
-      // setConfirmPassword("");
     }
   }
   return (
     <>
       <div className="form">
-        <form className="form-container" onSubmit={() => signUp()}>
+        <form className="form-container" onSubmit={signUp}>
           <h1>Tạo tài khoản</h1>
           <div className="box">
             <label>Họ và tên</label>
@@ -89,7 +84,7 @@ const Register = ({ users }) => {
               required
             />
           </div>
-          <button>Đăng kí</button>
+          <button type="submit">Đăng kí</button>
         </form>
       </div>
     </>
