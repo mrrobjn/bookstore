@@ -69,7 +69,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
       // setCardOwner("");
       // setCardNumber("");
       // setAddress("");
-      return false
+      return false;
     }
   }
 
