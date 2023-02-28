@@ -64,11 +64,11 @@ const CartTotal = ({ cartItem, setCartItem }) => {
         .then((res) => res.json())
         .then(() => {
           alert("Đặt hàng thành công");
+          setCartItem([]);
+          setCardOwner("");
+          setCardNumber("");
+          setAddress("");
         });
-      // setCartItem([]);
-      // setCardOwner("");
-      // setCardNumber("");
-      // setAddress("");
       return false;
     }
   }
@@ -81,7 +81,7 @@ const CartTotal = ({ cartItem, setCartItem }) => {
             <p>Tổng thanh toán: </p>
             <span>{totalPrice} đ</span>
           </div>
-          <form className="payment-box" onSubmit={() => checkout()}>
+          <div className="payment-box">
             <p>Chọn phương thức thanh toán:</p>
             <div className="payment-method">
               <label className="payment-input">
@@ -154,8 +154,10 @@ const CartTotal = ({ cartItem, setCartItem }) => {
                 required
               />
             </div>
-            <button type="submit">Thanh toán </button>
-          </form>
+            <button type="submit" onClick={() => checkout()}>
+              Thanh toán{" "}
+            </button>
+          </div>
         </div>
       </div>
     </>
