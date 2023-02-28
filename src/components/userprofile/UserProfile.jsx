@@ -14,13 +14,11 @@ const UserProfile = ({ users }) => {
               <p>Họ và tên:</p>
               <p>Email:</p>
               <p>Số điện thoại:</p>
-              <p>Mật khẩu:</p>
             </div>
             <div className="user-info">
               <p>{user.useName}</p>
               <p>{user.email}</p>
               <p>{user.phoneNo}</p>
-              <p>*******</p>
             </div>
           </div>
         ) : (
